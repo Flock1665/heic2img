@@ -2,6 +2,8 @@
 
 批量转换 HEIC/HEIF 为 JPG/PNG 的图形界面小工具，纯 Rust 实现。
 
+> 仓库：https://github.com/jackAqwq/heic2img · 使用说明与发布清单：`docs/heic2img-release/heic2img-release.html`
+
 解码基于 [heif-oxide](https://crates.io/crates/heif-oxide)（MIT OR Apache-2.0）——纯 Rust 的 HEIC 解码器，
 **无需安装 libheif / vcpkg / HEVC 系统扩展**，单文件 exe 即可运行。
 JPEG 编码基于 [jpeg-encoder](https://crates.io/crates/jpeg-encoder)（simd feature，AVX2 加速）。
