@@ -1,0 +1,4 @@
+# GNU 工具链下系统 import library 搜索路径（MSYS2 mingw-w64-crt 提取的系统库）
+# 本机无 MSVC link.exe，用 GNU 工具链 + MSYS2 binutils 构建 GUI 版本
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-L", "F:/AIData/tools/winsyslibs"]

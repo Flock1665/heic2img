@@ -1,0 +1,37 @@
+[package]
+name = "heic2img"
+version = "0.1.0"
+edition = "2021"
+description = "批量转换 HEIC/HEIF 为 JPG/PNG 的小工具"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+heif-oxide = "0.1"
+image = { version = "0.25", default-features = false, features = ["png"] }
+jpeg-encoder = { version = "0.7", features = ["simd"] }
+anyhow = "1"
+eframe = { version = "0.36.1", default-features = false, features = ["glow"] }
+rfd = { version = "0.17.2", default-features = false }
+egui = { version = "0.36", default-features = false }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_System_SystemInformation"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+# 依赖默认按体积优化（"z" 反而更大：禁内联致 LTO 简化不充分）；转换热路径三件套显式恢复全速
+[profile.release.package."*"]
+opt-level = "s"
+
+[profile.release.package.heif-oxide]
+opt-level = 3
+
+[profile.release.package.jpeg-encoder]
+opt-level = 3
+
+[profile.release.package.image]
+opt-level = 3
